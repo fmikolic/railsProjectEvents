@@ -1,12 +1,4 @@
-<h1> New event view </h1>
-
-<% flash.each do |type, msg| %>
-    <div>
-        <%= msg %>
-    </div>
-
-<% end %>
-
+<h1> EDIT Event </h1>
 <%= form_for(@event) do |f|%>
     <div>
         <%= f.label :title %>
