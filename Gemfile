@@ -9,6 +9,8 @@ gem "sprockets-rails"
 
 gem "sqlite3", "~> 1.4"
 
+gem 'awesome_print', '~> 1.9', '>= 1.9.2'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
