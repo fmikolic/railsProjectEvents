@@ -1,4 +1,18 @@
 <h1> EDIT Event </h1>
+
+<% if @event.errors.any? %>
+    <div class = "erro_explanation">
+        <h2><%= pluralize(@event.errors.count, "error") %> Couldn't save this action because: </h2>
+
+        <ul>
+            <% @event.errors.full_messages.each do |message| %>
+                <li> <%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+
+<% end %>
+
 <%= form_for(@event) do |f|%>
     <div>
         <%= f.label :title %>

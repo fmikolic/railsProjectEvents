@@ -15,22 +15,24 @@ class EventsController < ApplicationController
 
     def create
         @event = Event.new(event_params)
-        if @event.save
-            flash[:notice] = "Event created!"
-            redirect_to @event
-        else
-            flash.now[:alert] = "Event NOT created"
-            render "new"
+        respond_to do |format|
+            if @event.save
+                format.html {redirect_to @event, notice: "Event created!"}
+            else
+                format.html {render :new, status: :unprocessable_entity}
+            end
         end
-
     end
 
+    #NEED FIX---doesnt work as it should
     def destroy
         @event = Event.find(params[:id])
         @event.destroy
-        flash[:success] = "Destroyed item!"
 
-        redirect_to events_path
+        respond_to do |format|
+            format.html { redirect_to events_path, status: :see_other, notice: "Event deleted!" }
+            format.json { head:no_content } 
+        end
     end
 
     def edit
@@ -41,12 +43,12 @@ class EventsController < ApplicationController
     def update
         @event = Event.find(params[:id])
 
-        if @event.update(event_params)
-            flash[:notice] = "Updated event"
-            redirect_to @event
-        else
-            flash.now[:alert] = "Event NOT updated"
-            render "edit"
+        respond_to do |format|
+            if @event.update(event_params)
+                format.html {redirect_to @event, notice: "Event created!"}
+            else
+                format.html {render :edit, status: :unprocessable_entity}
+            end
         end
     end
 
