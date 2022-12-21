@@ -1,5 +1,11 @@
 <h1><%= @event.title %> </h1>
 
+<p> 
+<%= link_to "Edit event", edit_event_path(@event) %> | 
+<%= link_to "Delete event", event_path(@event), method: :delete, data: { confirm: "Are you sure?" } %> 
+</p>
+
+
 <div>
     <p> <%= @event.description %> </p>
     <p> <%= @event.start_date %> </p>
